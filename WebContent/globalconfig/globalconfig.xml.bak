@@ -1,0 +1,19 @@
+<config>
+	<login_url>http://192.168.1.90/Game/MicroClientConfig/login.htm</login_url>
+	<status_url>http://192.168.1.90/Game/MicroClientConfig/status.htm</status_url>
+	
+	<zone_list>
+		<zone>
+			<id>1</id>
+			<ip>192.168.1.98</ip>
+			<port>4210</port>
+			<game_root_url>http://192.168.1.90/Game</game_root_url>
+		</zone>
+		<zone>
+			<id>3</id>
+			<ip>192.168.1.99</ip>
+			<port>4310</port>
+			<game_root_url>ha1.dreamland.so</game_root_url>
+		</zone>
+	</zone_list>
+</config>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>QiYuWeb</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>log.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>FileDownLoadServlet</display-name>
+    <servlet-name>FileDownLoadServlet</servlet-name>
+    <servlet-class>org.qiyu.FileDownLoadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>    
+    <servlet-name>FileDownLoadServlet</servlet-name>
+    <url-pattern>/AssetBundles/*</url-pattern>
+    <url-pattern>/Publish.unity3d</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>ServerListServlet</display-name>
+    <servlet-name>ServerListServlet</servlet-name>
+    <servlet-class>org.qiyu.ServerListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>    
+    <servlet-name>ServerListServlet</servlet-name>
+    <url-pattern>/ServerList</url-pattern>
+  </servlet-mapping>
+  
+  <mime-mapping>
+        <extension>ini</extension>
+        <mime-type>text/plain</mime-type>
+  </mime-mapping>
+  
+  <mime-mapping>
+        <extension>unity3d</extension>
+        <mime-type>application/octet-stream</mime-type>
+  </mime-mapping>
+  
+  <mime-mapping>
+        <extension>xml</extension>
+        <mime-type>text/plain</mime-type>
+  </mime-mapping>
+  <servlet>
+  	<servlet-name>LogView</servlet-name>
+  	<servlet-class>org.qiyu.LogView</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LogView</servlet-name>
+  	<url-pattern>/Log</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>FileHelper</servlet-name>
+  	<servlet-class>org.qiyu.FileHelper</servlet-class>
+  </servlet>
+   <servlet-mapping>
+  	<servlet-name>FileHelper</servlet-name>
+  	<url-pattern>/File</url-pattern>
+  </servlet-mapping>
+</web-app>

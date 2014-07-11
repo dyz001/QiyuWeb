@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="./script/jquery-1.10.2.min.js" type="text/javascript"></script>
+<style type="text/css">
+body {
+ background-image: url(img/center.png);
+}
+.box a.btn-start  {background:url(img/button.png) no-repeat scroll 0 0 transparent;display: block;width: 149px;height:47px;left:0px;display:block;text-indent:-9999px;margin: 0 auto 20px;}
+.box a.btn-start:hover {background:url(img/button.png) no-repeat scroll 0 0 transparent;display: block;width: 149px;height:47px;display:block;text-indent:-9999px;margin: 0 auto 20px;}
+.box {
+ width:500px; 	/* 开始游戏按钮宽 */
+ height:47px; 	/* 开始游戏按钮高 */ 
+ margin-top:280px;		/* 开始游戏左上角坐标Y */
+ margin-left:100px;		/* 开始游戏左上角坐标X */ 
+}
+
+</style>
+</head>
+
+<body scroll=no>
+<div id="bg" style="display: none; position: absolute; z-index: 999; opacity: 1; width: 150px; height: 165px; top: 100px; left: 350px; background-color: rgb(204,232,207);border: 1px solid rgb(153, 153, 153);">
+<div id="serverList" style="display: block; position: absolute; z-index: 9999; width: 150px; height: 0px; left: 0px; top: 0px; vertical-align: middle; background-color: rgb(0, 0, 0); border: 1px solid rgb(153, 153, 153); opacity: 1; margin: 0px;">
+<input type="button" value="确定" onclick="hideServerList()" align="center"/>
+</div>
+</div>
+<div id="controlZone" class="box">
+<table>
+<td>
+<input id="curZoneId" type="hidden" value="1"/>
+<p style="color:red;width:180px;" >当前服务器:<span id="curServerName" style="color:white;">主干</span></p>
+</td>
+<td>
+<a href="javascript:login();" class="btn-start" onkeydown='return false;'></a>
+</td>
+<td>
+<input type="button" onclick="showServerList()" value="选择服务器"></input>
+</td>
+</div>
+
+<script type="text/javascript">
+function login()
+{	
+    window.external.StartGame($("#curZoneId").val(), 0);
+}
+function showServerList()
+{   	
+	$("#bg").show("slow");
+}
+function hideServerList()
+{
+$("#bg").hide("normal");
+var temp = $('input:radio[name="zone"]:checked');
+$("#curZoneId").val($('input:radio[name="zone"]:checked').val());
+$("#curServerName").html($('input:radio[name="zone"]:checked').attr("text"));
+}
+function fillDiv(jsonData)
+{
+	//alert(jsonData);
+	var json = eval("(" + jsonData+ ")");
+	for(var i in json)
+	{
+		var t = "<input type='radio' name='zone' value='" + json[i]["id"] + "' text='" + json[i]["name"] + "'";
+		if(eval(json[i]["id"]) == 1)
+		{
+		   t = t + " checked='checked'";
+		}
+		t = t + "/>" + json[i]["name"] + "</br>";
+		$("#serverList").prepend(t);
+	}
+}	
+$(function()
+		{
+	$.get( "../ServerList", 
+	 		function( data )
+	 		{		        
+		 		fillDiv(data);
+	  		}
+	 	);
+		}
+		);
+</script>
+
+</body>
+</html>

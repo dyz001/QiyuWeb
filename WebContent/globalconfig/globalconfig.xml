@@ -1,0 +1,69 @@
+<globalconfig>
+	<login_url>http://192.168.1.90/Game/microclient_static/login.htm</login_url>
+	<status_url>http://192.168.1.90/Game/microclient_static/status.htm</status_url>
+
+	<launcher_update>
+		<enable>1</enable>
+		<version>1.0.0.13</version>
+		<installer_url>http://192.168.1.90/Game/microclient_static/lsxd_installer.exe</installer_url>
+	</launcher_update>
+
+	<zone_list>
+		<zone>
+			<id>1</id>
+			<ip>192.168.1.98</ip>
+			<port>4210</port>
+			<name>主干</name>
+			<game_root_url>http://192.168.1.90/Game</game_root_url>
+		</zone>
+		
+		<zone>
+			<id>2</id>
+			<ip>192.168.1.88</ip>
+			<port>8210</port>
+			<name>测试私服</name>
+			<game_root_url>http://192.168.1.90/Game_ggz</game_root_url>
+		</zone>
+		
+		<zone>
+			<id>3</id>
+			<ip>192.168.1.88</ip>
+			<port>6210</port>
+			<name>测试私服</name>
+			<game_root_url>http://192.168.1.90/Game_liliang</game_root_url>
+		</zone>
+			
+			<zone>
+			<id>4</id>
+			<ip>192.168.1.97</ip>
+			<port>6210</port>
+			<name>测试私服</name>
+			<game_root_url>http://192.168.1.90/Game</game_root_url>
+		</zone>
+		
+			<zone>
+			<id>5</id>
+			<ip>192.168.1.97</ip>
+			<port>10210</port>
+			<name>窦哥的私服</name>
+			<game_root_url>http://192.168.1.90/Game</game_root_url>
+		</zone>
+		
+		<zone>
+			<id>6</id>
+			<ip>192.168.1.97</ip>
+			<port>4210</port>
+			<name>小邓子的私服</name>
+			<game_root_url>http://192.168.1.90/Game</game_root_url>
+		</zone>
+		
+		<zone>
+			<id>7</id>
+			<ip>192.168.1.88</ip>
+			<port>7210</port>
+			<name>测试私服</name>
+			<game_root_url>http://192.168.1.90/Game_fcs</game_root_url>
+		</zone>
+		
+	</zone_list>
+</globalconfig>

@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<style type="text/css">
+body
+{
+	overflow:hidden;
+	background-image:url(img/center.png);
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+}
+
+.loadtxt
+{
+	display:block;
+	font-size:14px;
+	margin-left:50px;
+	margin-top:300px;
+	width:486px; 
+	height:20px; 
+	line-height:20px; 
+	text-align:center;
+	color: #FF0;
+}
+
+.barbg
+{
+	display:block;
+	background:url(img/status_bg.png) no-repeat 0 0;
+	margin-left:46px;	/* 进度条背左上角坐标X 相对于浏览器 */
+	margin-top:0;
+	width:486px; 		/* 进度条背景长 */
+	height:15px;		/* 进度条背景宽 */
+}
+
+.bar
+{ 
+	display:block;
+	background:url(img/jindutiao.png) no-repeat 0 0;
+	margin-top:1px;		/* 进度条左上角坐标Y 相对于背景 */
+	margin-left:1px;	/* 进度条左上角坐标X 相对于背景 */
+	height:13px;		/* 进度条高 */
+}
+
+</style>
+
+<script type="text/javascript">
+<!--
+var STATUS_UPDATE_NO_START = 0
+var STATUS_UPDATE_CHECK = 1
+var STATUS_UPDATE_DOWNLOAD = 2
+var STATUS_UPDATE_FINISH = 3
+var STATUS_UPDATE_DOWNLOAD_INSTALLER = 4
+
+var status = STATUS_UPDATE_NO_START;
+var update_game_stime = 0
+
+function $(obj)
+{
+	return document.getElementById(obj);
+}
+
+function go(width_perc)
+{ 
+	$("bar").style.width = width_perc + "%"; 
+}
+
+function setErrorStatus(status, reason)
+{
+	var message = "";
+	switch (status)
+	{
+	case 8:
+		message = "获取版本号失败，请稍后再试！";
+		break;
+	case 10:
+	case 11:
+		message = "获取配置文件失败，请稍后再试！";
+		break;
+	case 13:
+		message = "更新文件失败，请稍后再试！";
+		break;
+	case 16:
+		message = "获取更新包文件失败，请稍后再试！";
+		break;
+	case 18:
+		message = "更新包安装失败，请重启电脑后再试！";
+		break;
+	default:
+		break;
+	}
+	
+	setErrorMessage(message);
+}
+
+function setErrorMessage(message)
+{
+	var process_tips = message;
+	$('process_tips').innerHTML = process_tips
+}
+
+function onGetDownloadProcess(status_in, filename, download_size, total_size, rate)
+{
+	switch (status_in)
+	{
+	case STATUS_UPDATE_NO_START:
+		go(0);
+		break;
+	case STATUS_UPDATE_CHECK:
+		go(100);
+		break;
+	case STATUS_UPDATE_DOWNLOAD:
+		var perc = 0
+		if (total_size > 0)
+		{
+			perc = Math.ceil((download_size/total_size) * 100);
+		}
+		go(perc);
+		break;
+	case STATUS_UPDATE_FINISH:
+		go(100);
+		break;
+	case STATUS_UPDATE_DOWNLOAD_INSTALLER:
+		var perc = rate;
+		if (perc < 0)
+		{
+			perc = 0;
+		}
+		else if (perc > 1)
+		{
+			perc = 1;
+		}
+		perc *= 100;
+		go(perc);
+		break;
+	}
+}
+
+-->
+</script>
+</head>
+
+<body>
+<div>
+	<div class="loadtxt">
+		<span id="process_tips"></span>
+	</div>
+	<div id="process_bar" class="barbg"> 
+		<strong id="bar" class="bar" style="width:0%;"></strong> 
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+setErrorMessage("");
+onGetDownloadProcess(STATUS_UPDATE_NO_START, 0, 0, 2, 0);
+-->
+</script>
+</body>
+</html>
